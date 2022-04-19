@@ -1,4 +1,4 @@
-import Tile from '../types/Tile';
+import Tile, { TileState } from './Tile';
 
 class Battlefield {
   private _battlefield: Tile[][];
@@ -7,14 +7,30 @@ class Battlefield {
     this._battlefield = [];
   }
 
-  setupBattlefield = () => {
+  public setupBattlefield() {
     this._battlefield = [];
+    for (let i = 0; i < 11; i++) {
+      this._battlefield.push([]);
+      for (let y = 0; y < 11; y++) {
+        let tileState: TileState = 'Water';
+        if (y === 0 || i === 0) {
+          tileState = null;
+        }
+
+        this._battlefield[i].push({
+          id: `${this.numToColumn(y)}${i}`,
+          row: `${this.numToColumn(y)}`,
+          column: i,
+          state: tileState,
+        });
+      }
+    }
   };
 
   get battlefield() {
     return this._battlefield;
   }
-  
+
   private numToColumn = (num: number) => {
     let s = '';
     let t;
