@@ -1,8 +1,10 @@
+import Battlefield from './classes/Battlefield';
 import Battleship from './classes/Battleship';
 
 
-const statek = new Battleship();
+const bf = new Battlefield();
 
-statek.hit();
-statek.displayHealth();
+bf.setupBattlefield();
+
+bf.displayBattlefield();
 

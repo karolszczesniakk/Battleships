@@ -1,7 +1,7 @@
-
 import Ship from './Ship';
 
-class Battleship extends Ship {
+
+class Destroyer extends Ship {
   protected _length: number;
   protected _shipName: string;
   protected _maxHealthPoints: number;
@@ -9,10 +9,10 @@ class Battleship extends Ship {
 
   constructor() {
     super();
-    this._length = 5;
-    this._maxHealthPoints = 5;
-    this._currentHealthPoints = 5;
-    this._shipName = 'Battleship';
+    this._length = 4;
+    this._maxHealthPoints = 4;
+    this._currentHealthPoints = 4;
+    this._shipName = 'Destroyer';
   }
 
   displayHealth() {
@@ -29,4 +29,4 @@ class Battleship extends Ship {
   }
 }
 
-export default Battleship;
+export default Destroyer;
