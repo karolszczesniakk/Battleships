@@ -1,11 +1,11 @@
-import Ship from './Battleship';
+import Ship from './Ship';
 
 export type TileState = Ship | 'Water' | 'Hit' | 'Miss' | null
+export type GridPosition = [row:number, column: number];
 
 type Tile = {
-  id: string;
-  row: number;
-  column: string;
+  name: string;
+  gridPosition: GridPosition;
   state: TileState | null;
 };
 

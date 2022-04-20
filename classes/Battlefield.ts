@@ -1,57 +1,45 @@
 import { transpile } from 'typescript';
-import Tile, { TileState } from './Tile';
+import Ship from './Ship';
+import Tile, { GridPosition, TileState } from './Tile';
 
 class Battlefield {
-  private _battlefield: Tile[][];
+  private _grid: Tile[][];
 
   constructor() {
-    this._battlefield = [];
+    this._grid = [];
   }
 
   public setupBattlefield() {
-    this._battlefield = [];
+    this._grid = [];
+
     for (let i = 0; i < 11; i++) {
-      this._battlefield.push([]);
+      this._grid.push([]);
       for (let y = 0; y < 11; y++) {
         let tileState: TileState = 'Water';
+
         if (y === 0 || i === 0) {
           tileState = null;
         }
 
-        this._battlefield[i].push({
-          id: this.calculateTileId(i,y),
-          column: `${this.numToColumn(y)}`,
-          row: i,
+        this._grid[i].push({
+          name: this.calculateTileName(i, y),
+          gridPosition: [i, y],
           state: tileState,
         });
       }
     }
-  };
-
-  public displayBattlefield() {
-    this._battlefield.forEach(row => {
-      let rowText = ''
-      //refactor later (maybe drawTile method)
-      row.forEach(tile => {
-        if (tile.state != null) {
-          if (tile.state === "Water") rowText = rowText + '[~]';
-          if (tile.state === "Hit") rowText = rowText + '[X]';
-          if (tile.state === "Miss") rowText = rowText + '[ ]';
-        } else if (tile.row === 10) {
-          rowText = rowText + ` ${tile.id}`;
-        } else {
-          rowText = rowText + ` ${tile.id} `;
-        }
-      })
-      console.log(rowText);
-    })
   }
 
-  get battlefield() {
-    return this._battlefield;
+  get grid() {
+    return this._grid;
   }
 
-  private numToColumn = (num: number) => {
+  checkIfShipOnTile(gridPosition: GridPosition) {
+    const [row, column] = gridPosition;
+    return (this._grid[row][column].state instanceof Ship);
+  }
+
+  private numberToLetter = (num: number) => {
     let s = '';
     let t;
 
@@ -63,14 +51,14 @@ class Battlefield {
     return s;
   };
 
-  private calculateTileId(column: number, row: number) {
+  private calculateTileName(column: number, row: number) {
     if (column === 0 && row === 0) {
-      return " ";
+      return ' ';
     }
     if (column === 0) {
-      return this.numToColumn(row);
+      return this.numberToLetter(row);
     } else {
-      return `${this.numToColumn(row)}${column}`
+      return `${this.numberToLetter(row)}${column}`;
     }
   }
 }

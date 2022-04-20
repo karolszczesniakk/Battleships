@@ -1,9 +1,9 @@
-import Battleship from '../classes/Battleship';
-import Destroyer from '../classes/Destroyer';
+import Ship from '../classes/Ship';
+
 
 describe('Ship', () => {
   it('should equal true', () => {
-    const ship = new Battleship();
+    const ship = new Ship(5);
     ship.hit();
     ship.hit();
     ship.hit();
@@ -13,13 +13,13 @@ describe('Ship', () => {
   });
 
   it('should equal false', () => {
-    const ship = new Battleship();
+    const ship = new Ship(5);;
     ship.hit();
     expect(ship.isSunk()).toBe(false);
   });
 
   it('should equal true', () => {
-    const ship = new Destroyer();
+    const ship = new Ship(4);
     ship.hit();
     ship.hit();
     ship.hit();
