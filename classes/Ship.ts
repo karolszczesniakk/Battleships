@@ -1,8 +1,8 @@
 class Ship {
-  protected _length: number;
-  protected _name: string;
-  protected _maxHealthPoints: number;
-  protected _currentHealthPoints: number;
+  private _length: number;
+  private _name: string;
+  private _maxHealthPoints: number;
+  private _currentHealthPoints: number;
 
   constructor(length: number) {
     this._length = length;

@@ -18,27 +18,26 @@ class GameManager {
     this._battlefield = battlefield;
     this._displayer = new BattlefieldDisplayer();
     this._shipPlacer = new ShipPlacer();
-    this._shooter = new Shooter(battlefield, this._displayer);
+    this._shooter = new Shooter();
   }
 
   public startGame() {
     this._battlefield.setupBattlefield();
     this._shipPlacer.placeShipsRandomly(this._battlefield, this._ships);
-    this._shooter.setupOneDimensionalGrid();
-
     this._displayer.renderGame(this._battlefield, this._ships)
-    console.log("Enter Firing Position:");
+    
+    console.log("\nEnter Firing Position (e.g. A5):");
 
+    //gameloop
     process.stdin.on('data', (data) => {
-      let position = data.toString().trim();
-      this._shooter.shoot(position);
-      console.clear();
+      let position = data.toString().trim().toUpperCase();
+      this._shooter.shoot(this._battlefield,this._displayer,position);
       this._displayer.renderGame(this._battlefield, this._ships);
-      console.log('Enter Firing Position:');
+      console.log('\nEnter Firing Position (e.g. A5):');
+
       if (this.areAllShipsSunk() === true) {
         this.finishGame();
         process.exit();
-        
       }
     });
   }

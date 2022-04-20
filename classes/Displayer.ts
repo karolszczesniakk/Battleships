@@ -11,10 +11,10 @@ class Displayer {
       row.forEach((tile) => {
         let textToAdd = '';
         if (tile.state != null) {
-          if (tile.state === 'Water') textToAdd = '[~]';
-          if (tile.state === 'Hit') textToAdd = '[X]';
-          if (tile.state === 'Miss') textToAdd = '[ ]';
-          if (tile.state instanceof Ship) textToAdd = '[S]'; // to be removed later
+          if (tile.state === 'Water') textToAdd = ' ~ ';
+          if (tile.state === 'Hit') textToAdd = ' X ';
+          if (tile.state === 'Miss') textToAdd = '   ';
+          if (tile.state instanceof Ship) textToAdd = ' S '; // to be removed later
         } else if (tile.name.includes('10')) {
           textToAdd = ` ${tile.name}`;
         } else {
@@ -24,8 +24,10 @@ class Displayer {
       });
       console.log(rowText);
     });
+    console.log('\n')
   }
-  public renderGame(battlefield: Battlefield, ships: Ship[]):void {
+  public renderGame(battlefield: Battlefield, ships: Ship[]): void {
+    console.clear();
     this.displayBattlefield(battlefield);
     this.displayMessage();
     this.displayShipsHealth(ships);
@@ -34,6 +36,7 @@ class Displayer {
     ships.forEach((ship) => {
       console.log(`${ship.name}: ${ship.currentHealth}/${ship.maxHealth}`);
     });
+    
   }
 
   public updateMessage(message: string) {
@@ -41,7 +44,7 @@ class Displayer {
   }
 
   public displayMessage() {
-    if (this._latestMessage) console.log('\n'+this._latestMessage+'\n');
+    if (this._latestMessage) console.log(this._latestMessage + '\n');
   }
 }
 

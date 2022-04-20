@@ -4,6 +4,7 @@ import Tile, { GridPosition, TileState } from './Tile';
 
 class Battlefield {
   private _grid: Tile[][];
+  private _tilesArray: Tile[];
 
   constructor() {
     this._grid = [];
@@ -28,15 +29,29 @@ class Battlefield {
         });
       }
     }
+    this.setupTilesArray();
+  }
+
+  private setupTilesArray() {
+    this._tilesArray = [];
+    this._grid.forEach((row) => {
+      return row.forEach((tile) => {
+        this._tilesArray.push(tile);
+      });
+    });
   }
 
   get grid() {
     return this._grid;
   }
 
+  public findTile(positionName: string) {
+    return this._tilesArray.find((tile) => tile.name === positionName);
+  }
+
   checkIfShipOnTile(gridPosition: GridPosition) {
     const [row, column] = gridPosition;
-    return (this._grid[row][column].state instanceof Ship);
+    return this._grid[row][column].state instanceof Ship;
   }
 
   private numberToLetter = (num: number) => {
