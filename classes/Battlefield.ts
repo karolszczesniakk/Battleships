@@ -49,11 +49,6 @@ class Battlefield {
     return this._tilesArray.find((tile) => tile.name === positionName);
   }
 
-  checkIfShipOnTile(gridPosition: GridPosition) {
-    const [row, column] = gridPosition;
-    return this._grid[row][column].state instanceof Ship;
-  }
-
   private numberToLetter = (num: number) => {
     let s = '';
     let t;
