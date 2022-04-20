@@ -1,6 +1,6 @@
 class Ship {
   protected _length: number;
-  protected _shipName: string;
+  protected _name: string;
   protected _maxHealthPoints: number;
   protected _currentHealthPoints: number;
 
@@ -8,23 +8,25 @@ class Ship {
     this._length = length;
     this._maxHealthPoints = length;
     this._currentHealthPoints = length;
-    if (length === 5) this._shipName = 'Battleship';
-    else if (length === 4) this._shipName = 'Destroyer';
-    else this._shipName = "Ship";
-  }
-
-  get battleship() {
-    return this;
+    if (length === 5) this._name = 'Battleship';
+    else if (length === 4) this._name = 'Destroyer';
+    else this._name = 'Ship';
   }
 
   get length() {
     return this._length;
   }
 
-  displayHealth() {
-    console.log(
-      `${this._shipName} - ${this._currentHealthPoints}/${this._maxHealthPoints}hp`
-    );
+  get name() {
+    return this._name;
+  }
+
+  get currentHealth() {
+    return this._currentHealthPoints;
+  }
+
+  get maxHealth() {
+    return this._maxHealthPoints;
   }
 
   isSunk() {

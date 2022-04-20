@@ -1,15 +1,11 @@
 import Battlefield from './Battlefield';
 import Ship from './Ship';
 
-class BattlefieldDisplayer {
-  private _battlefield: Battlefield;
+class Displayer {
+  private _latestMessage: string;
 
-  constructor(battlefield: Battlefield) {
-    this._battlefield = battlefield;
-  }
-
-  public display() {
-    this._battlefield.grid.forEach((row) => {
+  public displayBattlefield(battlefield: Battlefield) {
+    battlefield.grid.forEach((row) => {
       let rowText = '';
       //refactor later (maybe drawTile method)
       row.forEach((tile) => {
@@ -29,6 +25,24 @@ class BattlefieldDisplayer {
       console.log(rowText);
     });
   }
+  public renderGame(battlefield: Battlefield, ships: Ship[]):void {
+    this.displayBattlefield(battlefield);
+    this.displayMessage();
+    this.displayShipsHealth(ships);
+  }
+  public displayShipsHealth(ships: Ship[]) {
+    ships.forEach((ship) => {
+      console.log(`${ship.name}: ${ship.currentHealth}/${ship.maxHealth}`);
+    });
+  }
+
+  public updateMessage(message: string) {
+    this._latestMessage = message;
+  }
+
+  public displayMessage() {
+    if (this._latestMessage) console.log('\n'+this._latestMessage+'\n');
+  }
 }
 
-export default BattlefieldDisplayer
+export default Displayer
