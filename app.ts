@@ -8,17 +8,11 @@ const bf = new Battlefield();
 
 bf.setupBattlefield();
 
-
-
-
-
-const ship = new Ship(5);
-
 const displayer = new BattlefieldDisplayer(bf);
 
 const shipPlacer = new ShipPlacer();
 
-shipPlacer.placeShip(bf,ship,[8,4],'up')
+shipPlacer.placeShipsRandomly(bf,[new Ship(5), new Ship(4), new Ship(4)]);
 
 displayer.display();
 
