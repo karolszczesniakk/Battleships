@@ -5,6 +5,7 @@ import BattlefieldDisplayer from './Displayer';
 import Ship from './Ship';
 import ShipPlacer from './ShipPlacer';
 import Shooter from './Shooter';
+import Displayer from './Displayer';
 
 class GameManager {
   private _ships: Ship[];
@@ -13,12 +14,12 @@ class GameManager {
   private _shipPlacer: ShipPlacer;
   private _shooter: Shooter;
 
-  constructor(ships: Ship[], battlefield: Battlefield) {
+  constructor(ships: Ship[], battlefield: Battlefield, displayer: Displayer, shipPlacer: ShipPlacer, shooter: Shooter) {
     this._ships = ships;
     this._battlefield = battlefield;
-    this._displayer = new BattlefieldDisplayer();
-    this._shipPlacer = new ShipPlacer();
-    this._shooter = new Shooter();
+    this._displayer = displayer;
+    this._shipPlacer = shipPlacer;
+    this._shooter = shooter;
   }
 
   public startGame() {
