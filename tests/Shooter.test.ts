@@ -4,19 +4,21 @@ import Ship from '../classes/Ship';
 import Shooter from '../classes/Shooter';
 
 describe('Shooter', () => {
-  it('Should hit a placed ship', () => {
+  it('Should miss a placed ship', () => {
     const bf = new Battlefield();
-    const ship = new Ship(5);
     const shooter = new Shooter();
     const displayer = new Displayer();
-    
+
     bf.setupBattlefield();
-    bf.placeShip(ship, [6, 6], PlacingDirection.UP);
 
-    shooter.fireAt(bf, displayer, "F6");
-
-    expect(displayer.latestMessage).toBe(`Hit. ${ship.name}`);
-    expect(ship.currentHealth).toBe(4);
+    const F6Tile = bf.findTile('F6');
+    expect(F6Tile).toBeTruthy();
     
-  })
+    if (F6Tile) {
+      expect(F6Tile.state).toBe("Water")
+      shooter.fireAt(bf, displayer, "F6");
+      expect(displayer.latestMessage).toBe('Miss!');
+      expect(F6Tile.state).toBe('Miss');
+    }
+  });
 })

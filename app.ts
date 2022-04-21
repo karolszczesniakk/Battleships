@@ -4,6 +4,9 @@ import GameManager from './classes/GameManager';
 import Ship from './classes/Ship';
 import ShipPlacer from './classes/ShipPlacer';
 import Shooter from './classes/Shooter';
+import Tile from './classes/Tile';
+
+
 
 const battlefield = new Battlefield();
 const displayer = new Displayer();
@@ -15,3 +18,4 @@ const ships = [new Ship(5), new Ship(4), new Ship(4)];
 const gameManager = new GameManager(ships, battlefield, displayer, shipPlacer, shooter);
 
 gameManager.startGame();
+

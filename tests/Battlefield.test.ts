@@ -41,18 +41,4 @@ describe('Battlefield', () => {
     expect(bf.grid[0][0].name).toBe(' ');
   });
 
-  it('should successfully place ship upwards', () => {
-    const wasSuccesfull = bf.placeShip(new Ship(5), [7, 7], PlacingDirection.UP
-    );
-    expect(wasSuccesfull).toBe(true);
-    expect(bf.grid[6][7].state instanceof Ship).toBe(true);
-  });
-    it('should not place a ship', () => {
-      const wasSuccesfull = bf.placeShip(new Ship(5), [1, 1], PlacingDirection.UP
-      );
-      expect(wasSuccesfull).toBe(false);
-      expect(bf.grid[1][1].state instanceof Ship).toBe(false);
-    });
-
-
 });

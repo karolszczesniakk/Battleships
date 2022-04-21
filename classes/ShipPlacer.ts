@@ -1,6 +1,6 @@
 import Battlefield, { PlacingDirection } from './Battlefield';
 import Ship from './Ship';
-import Tile, { GridPosition } from './Tile';
+import { GridPosition } from './Tile';
 
 
 class ShipPlacer {
@@ -16,14 +16,47 @@ class ShipPlacer {
         const rndDirection: PlacingDirection = this.randomDirection();
         const rndRow = this.getRandomNumber(1, 10);
         const rndColumn = this.getRandomNumber(1, 10);
-        const isPlaceable = this._battlefield.placeShip(
+        const successfullPlacing = this.placeShip(
           ship,
           [rndRow, rndColumn],
           rndDirection
         );
-        if (isPlaceable) break;
+        if (successfullPlacing) break;
       }
     });
+  }
+
+  private placeShip(
+    ship: Ship,
+    gridPosition: GridPosition,
+    direction: PlacingDirection
+  ) {
+    const shipLength = ship.length;
+
+    const isShipPlaceable = this.canShipBePlaced(
+      shipLength,
+      gridPosition,
+      direction
+    );
+
+    if (!isShipPlaceable) return false;
+
+    switch (direction) {
+      case PlacingDirection.UP:
+        this.placeShipUpwards(ship, gridPosition);
+        break;
+      case PlacingDirection.DOWN:
+        this.placeShipDownwards(ship, gridPosition);
+        break;
+      case PlacingDirection.RIGHT:
+        this.placeShipToTheRight(ship, gridPosition);
+        break;
+      case PlacingDirection.LEFT: {
+        this.placeShipToTheLeft(ship, gridPosition);
+      }
+    }
+
+    return true;
   }
 
   private randomDirection(): PlacingDirection {
@@ -36,6 +69,131 @@ class ShipPlacer {
 
   private getRandomNumber(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  private canShipBePlaced(
+    shipLength: number,
+    gridPosition: GridPosition,
+    direction: PlacingDirection
+  ) {
+    switch (direction) {
+      case PlacingDirection.UP:
+        return this.checkUpwardsPlacement(gridPosition, shipLength);
+      case PlacingDirection.DOWN:
+        return this.checkDownwardsPlacement(gridPosition, shipLength);
+      case PlacingDirection.RIGHT:
+        return this.checkToTheRightPlacement(gridPosition, shipLength);
+      case PlacingDirection.LEFT:
+        return this.checkToTheLeftPlacement(gridPosition, shipLength);
+    }
+  }
+
+  private checkUpwardsPlacement(
+    gridPosition: GridPosition,
+    shipLength: number
+  ) {
+    const [row, column] = gridPosition;
+
+    const grid = this._battlefield.grid;
+
+    if (row - shipLength < 0) return false;
+
+    for (let i = row; i > row + 1 - shipLength; i--) {
+      let tile = grid[i][column];
+      if (tile.isWater()) return true;
+    }
+    return false;
+  }
+
+  private checkDownwardsPlacement(
+    gridPosition: GridPosition,
+    shipLength: number
+  ) {
+    const [row, column] = gridPosition;
+    const grid = this._battlefield.grid;
+
+    if (shipLength + row > 11) return false;
+
+    for (let i = row; i < row + shipLength; i++) {
+      let tile = grid[i][column];
+      if (tile.isWater()) return true;
+    }
+    return false;
+  }
+
+  private checkToTheRightPlacement(
+    gridPosition: GridPosition,
+    shipLength: number
+  ) {
+    const [row, column] = gridPosition;
+    const grid = this._battlefield.grid;
+
+    if (column + shipLength > 11) return false;
+
+    for (let i = column; i < column + shipLength; i++) {
+      let tile = grid[row][i];
+      if (tile.isWater()) return true;
+    }
+    return false;
+  }
+
+  private checkToTheLeftPlacement(
+    gridPosition: GridPosition,
+    shipLength: number
+  ) {
+    const [row, column] = gridPosition;
+    const grid = this._battlefield.grid;
+
+    if (column - shipLength < 0) return false;
+
+    for (let i = column; i > column - shipLength; i--) {
+      let tile = grid[row][i];
+      if (tile.isWater()) return true;
+    }
+    return false;
+  }
+
+  private placeShipUpwards(ship: Ship, gridPosition: GridPosition) {
+    const shipLength = ship.length;
+    const [row, column] = gridPosition;
+    const grid = this._battlefield.grid;
+
+    for (let i = row; i > row - shipLength; i--) {
+      let tile = grid[i][column];
+      tile.state = ship;
+    }
+  }
+  private placeShipDownwards(ship: Ship, gridPosition: GridPosition) {
+    const [row, column] = gridPosition;
+    const shipLength = ship.length;
+    const grid = this._battlefield.grid;
+
+    for (let i = row; i < row + shipLength; i++) {
+      let tile = grid[i][column];
+      tile.state = ship;
+    }
+  }
+
+  private placeShipToTheRight(ship: Ship, gridPosition: GridPosition) {
+    const [row, column] = gridPosition;
+    const shipLength = ship.length;
+    const grid = this._battlefield.grid;
+
+    for (let i = column; i < column + shipLength; i++) {
+      let tile = grid[row][i];
+      tile.state = ship;
+    }
+  }
+
+  private placeShipToTheLeft(ship: Ship, gridPosition: GridPosition) {
+    const [row, column] = gridPosition;
+    const shipLength = ship.length;
+    const grid = this._battlefield.grid;
+
+    for (let i = column; i > column - shipLength; i--) {
+      let tile = grid[row][i];
+      tile.state = ship;
+    }
   }
 }
 

@@ -17,11 +17,11 @@ class Ship {
     else return this._name = 'Ship';
   }
 
-  get length() {
+  public get length() {
     return this._length;
   }
 
-  get name() {
+  public get name() {
     return this._name;
   }
 

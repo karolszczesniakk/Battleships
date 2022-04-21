@@ -1,10 +1,11 @@
 import Battlefield from './Battlefield';
 import Ship from './Ship';
+import Tile from './Tile';
 
 class Displayer {
   private _latestMessage: string;
 
-  constructor() {
+  public constructor() {
     this._latestMessage = '';
   }
 
@@ -12,22 +13,11 @@ class Displayer {
     battlefield.grid.forEach((row) => {
       let rowText = '';
       row.forEach((tile) => {
-        let textToAdd = '';
-        if (tile.state != null) {
-          if (tile.state instanceof Ship) textToAdd = ' ~ '; 
-          if (tile.state === 'Water') textToAdd = ' ~ ';
-          if (tile.state === 'Hit') textToAdd = ' X ';
-          if (tile.state === 'Miss') textToAdd = '   ';
-        } else if (tile.name.includes('10')) {
-          textToAdd = ` ${tile.name}`;
-        } else {
-          textToAdd = ` ${tile.name} `;
-        }
-        rowText += textToAdd;
+        rowText += this.tileToText(tile);
       });
       console.log(rowText);
     });
-    console.log('\n')
+    console.log('\n');
   }
 
   public renderGame(battlefield: Battlefield, ships: Ship[]): void {
@@ -46,13 +36,28 @@ class Displayer {
     this._latestMessage = message;
   }
 
+  public get latestMessage() {
+    return this._latestMessage;
+  }
+
+  private tileToText(tile: Tile) {
+    let textToAdd = '';
+    if (tile.state != null) {
+      if (tile.state instanceof Ship) textToAdd = ' ~ ';
+      if (tile.state === 'Water') textToAdd = ' ~ ';
+      if (tile.state === 'Hit') textToAdd = ' X ';
+      if (tile.state === 'Miss') textToAdd = '   ';
+    } else if (tile.name.includes('10')) {
+      textToAdd = ` ${tile.name}`;
+    } else {
+      textToAdd = ` ${tile.name} `;
+    }
+    return textToAdd;
+  }
+
   private displayMessage() {
     if (this._latestMessage) console.log(this._latestMessage + '\n');
   }
-
-  get latestMessage() {
-    return this._latestMessage;
-  }
 }
 
-export default Displayer
+export default Displayer;

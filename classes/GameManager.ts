@@ -27,7 +27,7 @@ class GameManager {
     this._shipPlacer.placeShipsRandomly(this._ships);
     this._displayer.renderGame(this._battlefield, this._ships)
     
-    console.log("\nEnter Firing Position (e.g. A5):");
+    console.log('\nEnter Firing Position (e.g. A5):');
 
     //gameloop
     process.stdin.on('data', (data) => {
@@ -50,7 +50,7 @@ class GameManager {
   private finishGame() {
     console.clear();
     this._displayer.displayBattlefield(this._battlefield);
-    console.log("\nYou destroyed all enemy ships");
+    console.log('\nYou destroyed all enemy ships');
     process.exit();
   }
 }
