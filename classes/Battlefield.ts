@@ -2,11 +2,11 @@ import { transpile } from 'typescript';
 import Ship from './Ship';
 import Tile, { GridPosition, TileState } from './Tile';
 
-export enum PlacingDirections{
-  UP = 'up',
-  DOWN = 'down',
-  RIGHT = 'right',
-  LEFT = 'left'
+export enum PlacingDirection{
+  UP,
+  DOWN,
+  RIGHT,
+  LEFT
 };
 
 class Battlefield {
@@ -26,7 +26,7 @@ class Battlefield {
   public placeShip(
     ship: Ship,
     gridPosition: GridPosition,
-    direction: PlacingDirections
+    direction: PlacingDirection
   ) {
     const shipLength = ship.length;
 
@@ -37,18 +37,18 @@ class Battlefield {
     );
 
     if (!isShipPlaceable) return false;
-    
+
     switch (direction) {
-      case PlacingDirections.UP:
+      case PlacingDirection.UP:
         this.placeShipUpwards(ship, gridPosition);
         break;
-      case PlacingDirections.DOWN:
+      case PlacingDirection.DOWN:
         this.placeShipDownwards(ship, gridPosition);
         break;
-      case PlacingDirections.RIGHT:
+      case PlacingDirection.RIGHT:
         this.placeShipToTheRight(ship, gridPosition);
         break;
-      case PlacingDirections.LEFT: {
+      case PlacingDirection.LEFT: {
         this.placeShipToTheLeft(ship, gridPosition);
       }
     }
@@ -122,16 +122,16 @@ class Battlefield {
   private canShipBePlaced(
     shipLength: number,
     gridPosition: GridPosition,
-    direction: PlacingDirections
+    direction: PlacingDirection
   ) {
     switch (direction) {
-      case 'up':
+      case PlacingDirection.UP:
         return this.checkUpwardsPlacement(gridPosition, shipLength);
-      case 'down':
+      case PlacingDirection.DOWN:
         return this.checkDownwardsPlacement(gridPosition, shipLength);
-      case 'right':
+      case PlacingDirection.RIGHT:
         return this.checkToTheRightPlacement(gridPosition, shipLength);
-      case 'left':
+      case PlacingDirection.LEFT:
         return this.checkToTheLeftPlacement(gridPosition, shipLength);
     }
   }
