@@ -6,8 +6,8 @@ import Tile from '../classes/Tile';
 describe('ShipPlacer', () => {
   it('should place one Battleship (5 length) on battlefield', () => {
     const bf = new Battlefield();
-    const ship = new Ship(5);
     const shipPlacer = new ShipPlacer(bf);
+    
     bf.setupBattlefield();
     shipPlacer.placeShipsRandomly([new Ship(5)]);
 
