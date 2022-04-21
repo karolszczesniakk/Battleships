@@ -6,7 +6,7 @@ import Ship from './Ship';
 class Shooter {
   constructor() {}
 
-  public async shoot(battlefield: Battlefield, displayer: Displayer,positionName: string) {
+  public fireAt(battlefield: Battlefield, displayer: Displayer,positionName: string) {
     const targetTile = battlefield.findTile(positionName);
 
     if (!targetTile || targetTile === undefined || targetTile.state === null) {
@@ -27,7 +27,7 @@ class Shooter {
     if (targetTile.state instanceof Ship) {
       let ship = targetTile.state;
       ship.hit();
-      
+
       if(ship.isSunk()) displayer.updateMessage(`You DESTROYED ${ship.name}`)
       else displayer.updateMessage(`You hit ${ship.name}`);
 

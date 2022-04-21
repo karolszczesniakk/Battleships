@@ -28,7 +28,7 @@ class ShipPlacer {
     return 'left';
   }
 
-  getRandomNumber(min: number, max: number) {
+  private getRandomNumber(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 

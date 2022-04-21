@@ -32,7 +32,7 @@ class GameManager {
     //gameloop
     process.stdin.on('data', (data) => {
       let position = data.toString().trim().toUpperCase();
-      this._shooter.shoot(this._battlefield,this._displayer,position);
+      this._shooter.fireAt(this._battlefield,this._displayer,position);
       this._displayer.renderGame(this._battlefield, this._ships);
       console.log('\nEnter Firing Position (e.g. A5):');
 
