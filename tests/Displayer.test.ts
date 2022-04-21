@@ -10,5 +10,5 @@ describe('Displayer', () => {
     const displayer = new Displayer();
     displayer.updateMessage('hello');
     expect(displayer.latestMessage).toBe('hello');
-  })
+  });
 })

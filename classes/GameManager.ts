@@ -25,7 +25,7 @@ class GameManager {
   public startGame() {
     this._battlefield.setupBattlefield();
     this._shipPlacer.placeShipsRandomly(this._ships);
-    this._displayer.renderGame(this._battlefield, this._ships)
+    this._displayer.renderGame(this._battlefield, this._ships);
     
     console.log('\nEnter Firing Position (e.g. A5):');
 
@@ -38,7 +38,6 @@ class GameManager {
 
       if (this.areAllShipsSunk() === true) {
         this.finishGame();
-        
       }
     });
   }
