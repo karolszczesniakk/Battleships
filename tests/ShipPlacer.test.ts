@@ -1,87 +1,25 @@
 import Battlefield from '../classes/Battlefield';
 import Ship from '../classes/Ship';
 import ShipPlacer from '../classes/ShipPlacer';
+import Tile from '../classes/Tile';
 
 describe('ShipPlacer', () => {
-  it('should place ship upwards', () => {
+  it('should place one Battleship (5 length) on battlefield', () => {
     const bf = new Battlefield();
     const ship = new Ship(5);
-    const shipPlacer = new ShipPlacer();
+    const shipPlacer = new ShipPlacer(bf);
     bf.setupBattlefield();
+    shipPlacer.placeShipsRandomly([new Ship(5)]);
 
-    expect(shipPlacer.placeShip(bf, ship, [6, 3], 'up')).toBe(true);
-    expect(bf.grid[1][3].state instanceof Ship).toBe(false);
-    expect(bf.grid[5][3].state instanceof Ship).toBe(true);
-    expect(bf.grid[4][3].state instanceof Ship).toBe(true);
-    expect(bf.grid[3][3].state instanceof Ship).toBe(true);
-    expect(bf.grid[2][3].state instanceof Ship).toBe(true);
-    expect(bf.grid[1][3].state instanceof Ship).toBe(false);
-  });
+    const totalShipsLength = bf.tilesArray.reduce((total: number, currentTile: Tile) => {
+      if (currentTile.state instanceof Ship) {
+        console.log(currentTile.state)
+        return total + 1;
+      }
+      return total;
+    }, 0);
+    
+    expect(totalShipsLength).toBe(5);
+  })
 
-  it('shouldnt place ship and return false', () => {
-    const bf = new Battlefield();
-    const ship = new Ship(5);
-    const shipPlacer = new ShipPlacer();
-    bf.setupBattlefield();
-
-    expect(shipPlacer.placeShip(bf, ship, [1, 3], 'up')).toBe(false);
-    expect(bf.grid[1][3].state instanceof Ship).toBe(false);
-  });
-
-  it('should place ship', () => {
-    const bf = new Battlefield();
-    const ship = new Ship(5);
-    const shipPlacer = new ShipPlacer();
-    bf.setupBattlefield();
-
-    expect(shipPlacer.placeShip(bf, ship, [6, 3], 'down')).toBe(true);
-    expect(bf.grid[6][3].state instanceof Ship).toBe(true);
-    expect(bf.grid[7][3].state instanceof Ship).toBe(true);
-    expect(bf.grid[8][3].state instanceof Ship).toBe(true);
-    expect(bf.grid[9][3].state instanceof Ship).toBe(true);
-    expect(bf.grid[10][3].state instanceof Ship).toBe(true);
-  });
-
-  it('should place ship to the right', () => {
-    const bf = new Battlefield();
-    const ship = new Ship(5);
-    const shipPlacer = new ShipPlacer();
-    bf.setupBattlefield();
-
-    expect(shipPlacer.placeShip(bf, ship, [1, 3], 'right')).toBe(true);
-    expect(bf.grid[1][3].state instanceof Ship).toBe(true);
-    expect(bf.grid[1][4].state instanceof Ship).toBe(true);
-    expect(bf.grid[1][5].state instanceof Ship).toBe(true);
-    expect(bf.grid[1][6].state instanceof Ship).toBe(true);
-    expect(bf.grid[1][7].state instanceof Ship).toBe(true);
-    expect(bf.grid[1][8].state instanceof Ship).toBe(false);
-  });
-
-  it('should place ship to the left', () => {
-    const bf = new Battlefield();
-    const ship = new Ship(5);
-    const shipPlacer = new ShipPlacer();
-    bf.setupBattlefield();
-
-    expect(shipPlacer.placeShip(bf, ship, [1, 7], 'left')).toBe(true);
-    expect(bf.grid[1][7].state instanceof Ship).toBe(true);
-    expect(bf.grid[1][6].state instanceof Ship).toBe(true);
-    expect(bf.grid[1][5].state instanceof Ship).toBe(true);
-    expect(bf.grid[1][4].state instanceof Ship).toBe(true);
-    expect(bf.grid[1][3].state instanceof Ship).toBe(true);
-    expect(bf.grid[1][2].state instanceof Ship).toBe(false);
-  });
-
-  it('shouldnt place ship', () => {
-    const bf = new Battlefield();
-    const ship = new Ship(5);
-    const shipPlacer = new ShipPlacer();
-    bf.setupBattlefield();
-
-    expect(shipPlacer.placeShip(bf, ship, [1, 4], 'left')).toBe(false);
-    expect(bf.grid[1][4].state instanceof Ship).toBe(false);
-    expect(bf.grid[1][3].state instanceof Ship).toBe(false);
-    expect(bf.grid[1][2].state instanceof Ship).toBe(false);
-    expect(bf.grid[1][1].state instanceof Ship).toBe(false);
-  });
 });

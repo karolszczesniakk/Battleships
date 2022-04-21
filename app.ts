@@ -8,7 +8,7 @@ import Shooter from './classes/Shooter';
 const battlefield = new Battlefield();
 const displayer = new Displayer();
 const shooter = new Shooter();
-const shipPlacer = new ShipPlacer();
+const shipPlacer = new ShipPlacer(battlefield);
 
 const ships = [new Ship(5), new Ship(4), new Ship(4)];
 

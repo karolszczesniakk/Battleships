@@ -24,7 +24,7 @@ class GameManager {
 
   public startGame() {
     this._battlefield.setupBattlefield();
-    this._shipPlacer.placeShipsRandomly(this._battlefield, this._ships);
+    this._shipPlacer.placeShipsRandomly(this._ships);
     this._displayer.renderGame(this._battlefield, this._ships)
     
     console.log("\nEnter Firing Position (e.g. A5):");
@@ -38,7 +38,7 @@ class GameManager {
 
       if (this.areAllShipsSunk() === true) {
         this.finishGame();
-        process.exit();
+        
       }
     });
   }
@@ -51,6 +51,7 @@ class GameManager {
     console.clear();
     this._displayer.displayBattlefield(this._battlefield);
     console.log("\nYou destroyed all enemy ships");
+    process.exit();
   }
 }
 

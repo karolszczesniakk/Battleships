@@ -1,4 +1,5 @@
-import Battlefield from '../classes/Battlefield';
+import Battlefield, { PlacingDirections } from '../classes/Battlefield';
+import Ship from '../classes/Ship';
 
 describe('Battlefield', () => {
   const bf = new Battlefield();
@@ -39,6 +40,17 @@ describe('Battlefield', () => {
   it('should have id of "2"', () => {
     expect(bf.grid[0][0].name).toBe(' ');
   });
+
+  it('should successfully place ship upwards', () => {
+    const wasSuccesfull = bf.placeShip(new Ship(5), [7, 7], PlacingDirections.UP);
+    expect(wasSuccesfull).toBe(true);
+    expect(bf.grid[6][7].state instanceof Ship).toBe(true);
+  });
+    it('should not place a ship', () => {
+      const wasSuccesfull = bf.placeShip(new Ship(5),[1, 1],PlacingDirections.UP);
+      expect(wasSuccesfull).toBe(false);
+      expect(bf.grid[1][1].state instanceof Ship).toBe(false);
+    });
 
 
 });

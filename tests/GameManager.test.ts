@@ -10,7 +10,7 @@ describe('GameManager', () => {
     const bf = new Battlefield();
     const displayer = new Displayer();
     const shooter = new Shooter();
-    const shipPlacer = new ShipPlacer();
+    const shipPlacer = new ShipPlacer(bf);
     const ships = [new Ship(5), new Ship(4)]
 
     const gameManager = new GameManager(ships, bf, displayer, shipPlacer, shooter);

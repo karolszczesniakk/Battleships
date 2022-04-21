@@ -28,8 +28,8 @@ class Shooter {
       let ship = targetTile.state;
       ship.hit();
 
-      if(ship.isSunk()) displayer.updateMessage(`You DESTROYED ${ship.name}`)
-      else displayer.updateMessage(`You hit ${ship.name}`);
+      if(ship.isSunk()) displayer.updateMessage(`Sinked ${ship.name}`)
+      else displayer.updateMessage(`Hit. ${ship.name}`);
 
       targetTile.state = 'Hit';
       return;

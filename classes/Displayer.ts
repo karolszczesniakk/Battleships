@@ -4,6 +4,10 @@ import Ship from './Ship';
 class Displayer {
   private _latestMessage: string;
 
+  constructor() {
+    this._latestMessage = '';
+  }
+
   public displayBattlefield(battlefield: Battlefield) {
     battlefield.grid.forEach((row) => {
       let rowText = '';
@@ -25,6 +29,7 @@ class Displayer {
     });
     console.log('\n')
   }
+
   public renderGame(battlefield: Battlefield, ships: Ship[]): void {
     console.clear();
     this.displayBattlefield(battlefield);
@@ -35,15 +40,18 @@ class Displayer {
     ships.forEach((ship) => {
       console.log(`${ship.name}: ${ship.currentHealth}/${ship.maxHealth}`);
     });
-    
   }
 
   public updateMessage(message: string) {
     this._latestMessage = message;
   }
 
-  public displayMessage() {
+  private displayMessage() {
     if (this._latestMessage) console.log(this._latestMessage + '\n');
+  }
+
+  get latestMessage() {
+    return this._latestMessage;
   }
 }
 

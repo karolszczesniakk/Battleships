@@ -8,9 +8,13 @@ class Ship {
     this._length = length;
     this._maxHealthPoints = length;
     this._currentHealthPoints = length;
-    if (length === 5) this._name = 'Battleship';
-    else if (length === 4) this._name = 'Destroyer';
-    else this._name = 'Ship';
+    this._name = this.chooseShipName(length);
+  }
+
+  private chooseShipName(length: number) {
+    if (length === 5) return 'Battleship';
+    else if (length === 4) return 'Destroyer';
+    else return this._name = 'Ship';
   }
 
   get length() {
@@ -29,10 +33,10 @@ class Ship {
     return this._maxHealthPoints;
   }
 
-  isSunk() {
+  public isSunk() {
     return this._currentHealthPoints <= 0;
   }
-  hit() {
+  public hit() {
     this._currentHealthPoints -= 1;
   }
 }
