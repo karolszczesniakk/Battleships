@@ -1,4 +1,4 @@
-import Tile from '../classes/Tile'
+import Tile from '../classes/battlefield/model/Tile'
 
 describe('Tile', () => {
   it('should create tile with name of "A1"', () => {

@@ -1,11 +1,11 @@
 import * as readline from 'node:readline';
 import { stdin as input, stdout as output } from 'node:process';
-import Battlefield from './Battlefield';
-import BattlefieldDisplayer from './Displayer';
-import Ship from './Ship';
-import ShipPlacer from './ShipPlacer';
-import Shooter from './Shooter';
-import Displayer from './Displayer';
+import Battlefield from '../../battlefield/model/Battlefield';
+import BattlefieldDisplayer from '../service/Displayer';
+import Ship from '../../ship/model/Ship';
+import ShipPlacer from '../service/ShipPlacer';
+import Shooter from '../service/Shooter';
+import Displayer from '../service/Displayer';
 
 class GameManager {
   private _ships: Ship[];

@@ -1,4 +1,4 @@
-import Ship from '../classes/Ship';
+import Ship from '../classes/ship/model/Ship';
 
 
 describe('Ship', () => {

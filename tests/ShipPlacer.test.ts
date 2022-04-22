@@ -1,7 +1,7 @@
-import Battlefield from '../classes/Battlefield';
-import Ship from '../classes/Ship';
-import ShipPlacer from '../classes/ShipPlacer';
-import Tile from '../classes/Tile';
+import Battlefield from '../classes/battlefield/model/Battlefield';
+import Ship from '../classes/ship/model/Ship';
+import ShipPlacer from '../classes/application/service/ShipPlacer';
+import Tile from '../classes/battlefield/model/Tile';
 
 describe('ShipPlacer', () => {
   it('should place one Battleship (5 length) on battlefield', () => {

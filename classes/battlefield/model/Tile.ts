@@ -1,4 +1,4 @@
-import Ship from './Ship';
+import Ship from '../../ship/model/Ship';
 
 export type TileState = Ship | 'Water' | 'Hit' | 'Miss' | null
 export type GridPosition = [row:number, column: number];

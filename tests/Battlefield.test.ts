@@ -1,5 +1,5 @@
-import Battlefield, { PlacingDirection } from '../classes/Battlefield';
-import Ship from '../classes/Ship';
+import Battlefield, { PlacingDirection } from '../classes/battlefield/model/Battlefield';
+import Ship from '../classes/ship/model/Ship';
 
 describe('Battlefield', () => {
   const bf = new Battlefield();

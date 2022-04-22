@@ -1,6 +1,6 @@
-import Battlefield, { PlacingDirection } from './Battlefield';
-import Ship from './Ship';
-import { GridPosition } from './Tile';
+import Battlefield, { PlacingDirection } from '../../battlefield/model/Battlefield';
+import Ship from '../../ship/model/Ship';
+import { GridPosition } from '../../battlefield/model/Tile';
 
 
 class ShipPlacer {

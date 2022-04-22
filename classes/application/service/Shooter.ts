@@ -1,7 +1,7 @@
-import Battlefield from './Battlefield';
+import Battlefield from '../../battlefield/model/Battlefield';
 import Displayer from './Displayer';
 
-import Ship from './Ship';
+import Ship from '../../ship/model/Ship';
 
 class Shooter {
   constructor() {}

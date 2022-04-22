@@ -1,6 +1,6 @@
-import Battlefield from './Battlefield';
-import Ship from './Ship';
-import Tile from './Tile';
+import Battlefield from '../../battlefield/model/Battlefield';
+import Ship from '../../ship/model/Ship';
+import Tile from '../../battlefield/model/Tile';
 
 class Displayer {
   private _latestMessage: string;

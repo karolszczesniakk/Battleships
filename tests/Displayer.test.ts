@@ -1,4 +1,4 @@
-import Displayer from '../classes/Displayer'
+import Displayer from '../classes/application/service/Displayer'
 
 describe('Displayer', () => {
   it('Should create instance of Displayer', () => {

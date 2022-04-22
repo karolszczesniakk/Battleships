@@ -1,10 +1,10 @@
-import Battlefield from './classes/Battlefield';
-import Displayer from './classes/Displayer';
-import GameManager from './classes/GameManager';
-import Ship from './classes/Ship';
-import ShipPlacer from './classes/ShipPlacer';
-import Shooter from './classes/Shooter';
-import Tile from './classes/Tile';
+import Battlefield from './classes/battlefield/model/Battlefield';
+import Displayer from './classes/application/service/Displayer';
+import GameManager from './classes/application/manager/GameManager';
+import Ship from './classes/ship/model/Ship';
+import ShipPlacer from './classes/application/service/ShipPlacer';
+import Shooter from './classes/application/service/Shooter';
+import Tile from './classes/battlefield/model/Tile';
 
 
 
