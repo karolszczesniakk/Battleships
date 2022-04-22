@@ -1,4 +1,4 @@
-import Tile, { GridPosition } from './Tile';
+import Tile from './Tile';
 
 export enum PlacingDirection{
   UP,

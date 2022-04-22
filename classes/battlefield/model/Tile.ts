@@ -5,15 +5,13 @@ export type GridPosition = [row:number, column: number];
 
 class Tile {
   private _name: string;
-  private _gridPosition: GridPosition;
   private _state: TileState;
 
   public constructor(gridPosition: GridPosition) {
-    this._gridPosition = gridPosition;
     this._name = this.chooseTileName(gridPosition);
-
     this._state = this.chooseTileState(gridPosition);
   }
+  
   public get state() {
     return this._state;
   }

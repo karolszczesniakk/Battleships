@@ -1,12 +1,13 @@
-import Battlefield, { PlacingDirection } from '../../battlefield/model/Battlefield';
+import Battlefield, {
+  PlacingDirection,
+} from '../../battlefield/model/Battlefield';
 import Ship from '../../ship/model/Ship';
 import { GridPosition } from '../../battlefield/model/Tile';
-
 
 class ShipPlacer {
   private _battlefield: Battlefield;
 
-  constructor(battlefield: Battlefield) {
+  public constructor(battlefield: Battlefield) {
     this._battlefield = battlefield;
   }
 

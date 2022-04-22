@@ -4,9 +4,11 @@ import Displayer from './Displayer';
 import Ship from '../../ship/model/Ship';
 
 class Shooter {
-  constructor() {}
-
-  public fireAt(battlefield: Battlefield, displayer: Displayer,positionName: string) {
+  public fireAt(
+    battlefield: Battlefield,
+    displayer: Displayer,
+    positionName: string
+  ) {
     const targetTile = battlefield.findTile(positionName);
 
     if (!targetTile || targetTile === undefined || targetTile.state === null) {
@@ -28,7 +30,7 @@ class Shooter {
       let ship = targetTile.state;
       ship.hit();
 
-      if(ship.isSunk()) displayer.updateMessage(`Sinked ${ship.name}`)
+      if (ship.isSunk()) displayer.updateMessage(`Sinked ${ship.name}`);
       else displayer.updateMessage(`Hit. ${ship.name}`);
 
       targetTile.state = 'Hit';

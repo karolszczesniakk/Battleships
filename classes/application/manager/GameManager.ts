@@ -1,5 +1,3 @@
-import * as readline from 'node:readline';
-import { stdin as input, stdout as output } from 'node:process';
 import Battlefield from '../../battlefield/model/Battlefield';
 import BattlefieldDisplayer from '../service/Displayer';
 import Ship from '../../ship/model/Ship';
@@ -14,7 +12,7 @@ class GameManager {
   private _shipPlacer: ShipPlacer;
   private _shooter: Shooter;
 
-  constructor(ships: Ship[], battlefield: Battlefield, displayer: Displayer, shipPlacer: ShipPlacer, shooter: Shooter) {
+  public constructor(ships: Ship[], battlefield: Battlefield, displayer: Displayer, shipPlacer: ShipPlacer, shooter: Shooter) {
     this._ships = ships;
     this._battlefield = battlefield;
     this._displayer = displayer;

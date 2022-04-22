@@ -4,7 +4,7 @@ class Ship {
   private _maxHealthPoints: number;
   private _currentHealthPoints: number;
 
-  constructor(length: number) {
+  public constructor(length: number) {
     this._length = length;
     this._maxHealthPoints = length;
     this._currentHealthPoints = length;
