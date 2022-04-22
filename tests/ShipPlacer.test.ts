@@ -13,7 +13,6 @@ describe('ShipPlacer', () => {
 
     const totalShipsLength = bf.tilesArray.reduce((total: number, currentTile: Tile) => {
       if (currentTile.state instanceof Ship) {
-        console.log(currentTile.state)
         return total + 1;
       }
       return total;

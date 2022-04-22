@@ -101,9 +101,9 @@ class ShipPlacer {
 
     for (let i = row; i > row + 1 - shipLength; i--) {
       let tile = grid[i][column];
-      if (tile.isWater()) return true;
+      if (!tile.isWater()) return false;
     }
-    return false;
+    return true;
   }
 
   private checkDownwardsPlacement(
@@ -117,9 +117,9 @@ class ShipPlacer {
 
     for (let i = row; i < row + shipLength; i++) {
       let tile = grid[i][column];
-      if (tile.isWater()) return true;
+      if (!tile.isWater()) return false;
     }
-    return false;
+    return true;
   }
 
   private checkToTheRightPlacement(
@@ -133,9 +133,9 @@ class ShipPlacer {
 
     for (let i = column; i < column + shipLength; i++) {
       let tile = grid[row][i];
-      if (tile.isWater()) return true;
+      if (!tile.isWater()) return false;
     }
-    return false;
+    return true;
   }
 
   private checkToTheLeftPlacement(
@@ -149,9 +149,9 @@ class ShipPlacer {
 
     for (let i = column; i > column - shipLength; i--) {
       let tile = grid[row][i];
-      if (tile.isWater()) return true;
+      if (!tile.isWater()) return false;
     }
-    return false;
+    return true;
   }
 
   private placeShipUpwards(ship: Ship, gridPosition: GridPosition) {
